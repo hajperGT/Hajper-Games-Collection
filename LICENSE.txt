@@ -1,21 +1,23 @@
-MIT License
+Hajper Games Collection (HGC) is a free desktop application designed for comprehensive management of a private collection of games, hardware, computers, and accessories.
 
-Copyright (c) [year] [fullname]
+The application allows users to build a detailed collection database using extensive item records that can include descriptions, technical specifications, condition information, service history, photo galleries, front and back covers, custom backgrounds, and additional user-defined information.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+HGC provides advanced search and filtering capabilities, a comprehensive statistics module with charts and collection analysis, multiple visual themes, interface transparency settings, detailed report export to PDF and TXT formats, and the ability to download game artwork through the RAWG API.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The software is independently developed by hajperAPP as a hobby project. It was created out of a passion for gaming, collecting, and software development, with the goal of providing collectors with a modern, intuitive, and continuously evolving collection management tool.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Modern artificial intelligence tools are also used during the design and development process to assist with analysis, user interface design, implementation, and testing of selected application components. The overall application architecture, implemented solutions, and all design decisions remain the result of independent development and original authorial work.
+
+HGC contains no advertisements, does not require user registration, and performs no online operations without the user's explicit action.
+
+────────────────────────────────────────────────────────
+
+Hajper Games Collection (HGC) is proprietary software developed by hajperAPP. Unless otherwise stated, all copyrights to the source code, user interface design, documentation, and all other original components of the application belong to the author.
+
+The application may use trade names, trademarks, product names, manufacturer names, platform names, console names, computer names, accessory names, and game titles solely for identification and informational purposes. All rights to such names and marks remain the property of their respective owners.
+
+Hajper Games Collection is not affiliated with, sponsored by, licensed by, authorized by, or endorsed by any hardware manufacturer, game publisher, trademark owner, or platform operator.
+
+The author of the application has no control over content added by users, including descriptions, photographs, images, covers, backgrounds, or any other materials stored within the application. Users are solely responsible for ensuring the legality, origin, and appropriate use of all content added to their collections.
+
+All rights to data, images, and other materials obtained from third-party sources remain the property of their respective owners and are used in accordance with the applicable terms of service and license agreements.
