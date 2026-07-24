@@ -1,0 +1,50 @@
+﻿<Window x:Class="HGC.PdfGeneratingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        AllowsTransparency="True"
+        Background="Transparent"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        RenderOptions.BitmapScalingMode="Fant"
+        Opacity="0">
+
+    <Grid Background="Transparent">
+
+        <StackPanel HorizontalAlignment="Center">
+
+            <Image x:Name="LogoImage"
+                   Source="/Assets/hgcmainico.png"
+                   Width="140"
+                   Height="140"
+                   Stretch="Uniform"
+                   RenderTransformOrigin="0.5,0.5">
+
+                <Image.RenderTransform>
+                    <TranslateTransform x:Name="LogoTranslate"/>
+                </Image.RenderTransform>
+
+            </Image>
+
+            <TextBlock x:Name="GeneratingText"
+           Margin="0,18,0,0"
+           HorizontalAlignment="Center"
+           FontSize="16"
+           FontWeight="SemiBold">
+
+                <TextBlock.Foreground>
+                    <SolidColorBrush x:Name="TextBrush"
+                         Color="White"/>
+                </TextBlock.Foreground>
+
+            </TextBlock>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>

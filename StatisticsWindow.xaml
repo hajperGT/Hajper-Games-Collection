@@ -1,0 +1,312 @@
+﻿<Window x:Class="HGC.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Width="1400"
+        Height="940"
+        MinWidth="1100"
+        MinHeight="700"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        Background="{DynamicResource ContentBackgroundBrush}"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType">
+
+    <Window.Resources>
+
+        <Style x:Key="HgcDialogButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonTextBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource AppAccentBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AppAccentBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="ButtonBorder"
+                        CornerRadius="7"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Border CornerRadius="7" Opacity="0.35">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#88FFFFFF" Offset="0"/>
+                                            <GradientStop Color="#22FFFFFF" Offset="0.45"/>
+                                            <GradientStop Color="#33000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}"
+                                          RecognizesAccessKey="True"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                Property="Opacity"
+                                Value="0.86"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                Property="Opacity"
+                                Value="0.70"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder"
+                                Property="Opacity"
+                                Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid Background="Transparent">
+                            <Track x:Name="PART_Track"
+                           IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineUpCommand"
+                                          Opacity="0"/>
+                                </Track.DecreaseRepeatButton>
+
+                                <Track.Thumb>
+                                    <Thumb Background="{DynamicResource AppAccentBrush}">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                <Border CornerRadius="5"
+                                                Background="{DynamicResource AppAccentBrush}"
+                                                Opacity="0.75"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineDownCommand"
+                                          Opacity="0"/>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HgcCloseButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="44"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="#C42B1C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="CloseButtonBorder"
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CloseButtonBorder"
+                                Property="Background"
+                                Value="#E81123"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="CloseButtonBorder"
+                                Property="Background"
+                                Value="#8B1A12"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="CloseButtonBorder"
+                                Property="Opacity"
+                                Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="36"
+                            ResizeBorderThickness="5"
+                            CornerRadius="0"
+                            GlassFrameThickness="0"
+                            UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+
+    <Border BorderBrush="{DynamicResource AppAccentBrush}"
+            BorderThickness="2"
+            Background="{DynamicResource ContentBackgroundBrush}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="72"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title bar -->
+            <Border Grid.Row="0"
+                    Background="{DynamicResource TitleBarBrush}">
+                <Grid>
+                    <TextBlock x:Name="TitleText"
+                               Text="Statystyki kolekcji"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource AppTextBrush}"/>
+
+                    <Button Content="X"
+                            Style="{StaticResource HgcCloseButtonStyle}"
+                            HorizontalAlignment="Right"
+                            Click="CloseButton_Click"/>
+                </Grid>
+            </Border>
+
+            <!-- Header -->
+            <Border Grid.Row="1"
+                    Margin="20,8,24,22"
+                    Padding="16"
+                    Background="{DynamicResource PreviewBoxBrush}"
+                    BorderBrush="{DynamicResource AppBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="10">
+
+                <Border.Effect>
+                    <DropShadowEffect Color="Black"
+                      Direction="315"
+                      ShadowDepth="6"
+                      BlurRadius="16"
+                      Opacity="0.40"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <TextBlock x:Name="HeaderText"
+                               Text="Statystyki Twojej kolekcji"
+                               Margin="0,0,0,0"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               Foreground="{DynamicResource AppTextBrush}"/>
+
+                    <TextBlock x:Name="SubtitleText"
+                               Text="Podsumowanie danych zapisanych w Hajper Games Collection"
+                               Margin="0,5,0,0"
+                               FontSize="13"
+                               Opacity="0.75"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               Foreground="{DynamicResource AppTextBrush}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Two columns -->
+            <ScrollViewer Grid.Row="2"
+                          Margin="26,0,14,0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled"
+                          Background="{DynamicResource ContentBackgroundBrush}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.35*"/>
+                        <ColumnDefinition Width="18"/>
+                        <ColumnDefinition Width="0.40*"/>
+                        <ColumnDefinition Width="18"/>
+                        <ColumnDefinition Width="1.10*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel x:Name="LeftStatsPanel"
+                Grid.Column="0"/>
+
+                    <StackPanel x:Name="RightStatsPanel"
+                Grid.Column="2"/>
+
+                    <Grid Grid.Column="4"
+      Margin="0,0,12,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel x:Name="GameChartsPanel"
+                Grid.Row="0"/>
+
+                        <Border x:Name="CollectionValuePanel"
+            Grid.Row="1"
+            Margin="0,4,0,0"
+            Visibility="Collapsed"/>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <Button x:Name="ExportTxtButton"
+                        Content="Eksport TXT"
+                        Style="{StaticResource HgcDialogButtonStyle}"
+                        Margin="5,0"
+                        Click="ExportTxtButton_Click"/>
+
+                <Button x:Name="ExportPdfButton"
+                        Content="Eksport PDF"
+                        Style="{StaticResource HgcDialogButtonStyle}"
+                        Margin="5,0"
+                        Click="ExportPdfButton_Click"/>
+
+                <Button x:Name="CurrencyRatesButton"
+                        Style="{StaticResource HgcDialogButtonStyle}"
+                        Margin="5,0"
+                        Click="CurrencyRatesButton_Click"/>
+                
+                <Button x:Name="CloseButton"
+                        Content="Zamknij"
+                        Style="{StaticResource HgcDialogButtonStyle}"
+                        Margin="5,0"
+                        Click="CloseButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

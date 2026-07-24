@@ -1,0 +1,1073 @@
+﻿<Window x:Class="HGC.PcCoolingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="PC Cooling"
+        Width="640"
+        Height="760"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="{DynamicResource ContentBackgroundBrush}">
+
+    <Window.Resources>
+        <Style x:Key="PcCoolingScrollBarStyle" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid Background="Transparent">
+                            <Track x:Name="PART_Track"
+                                   IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static ScrollBar.LineUpCommand}"
+                                                  Opacity="0"
+                                                  IsTabStop="False"/>
+                                </Track.DecreaseRepeatButton>
+
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                <Border CornerRadius="5"
+                                                        Background="{DynamicResource AppAccentBrush}"
+                                                        Opacity="0.75"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static ScrollBar.LineDownCommand}"
+                                                  Opacity="0"
+                                                  IsTabStop="False"/>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PcCoolingScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ScrollContentPresenter Grid.Column="0"
+                                                    Content="{TemplateBinding Content}"
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                    CanContentScroll="{TemplateBinding CanContentScroll}"/>
+
+                            <ScrollBar x:Name="PART_VerticalScrollBar"
+                                       Grid.Column="1"
+                                       Style="{StaticResource PcCoolingScrollBarStyle}"
+                                       Orientation="Vertical"
+                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                       Value="{TemplateBinding VerticalOffset}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="36"
+                            ResizeBorderThickness="0"
+                            CornerRadius="0"
+                            GlassFrameThickness="0"
+                            UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+
+    <Grid Background="{DynamicResource ContentBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Background="{DynamicResource TitleBarBrush}">
+            <Grid>
+                <TextBlock Text="PC Cooling"
+                           VerticalAlignment="Center"
+                           Margin="12,0,0,0"
+                           FontWeight="SemiBold"
+                           FontSize="14"
+                           Foreground="{DynamicResource AppTextBrush}"/>
+
+                <Button Content="X"
+                        Width="44"
+                        Height="36"
+                        HorizontalAlignment="Right"
+                        BorderThickness="0"
+                        FontWeight="Bold"
+                        Cursor="Hand"
+                        shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                        Click="CancelButton_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#C42B1C"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="CloseBorder"
+                                                Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="CloseBorder"
+                                                        Property="Background"
+                                                        Value="#E81123"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="CloseBorder"
+                                                        Property="Background"
+                                                        Value="#8B1A12"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1"
+              Style="{StaticResource FormRootGridStyle}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="WindowTitleText"
+                   Grid.Row="0"
+                   Text="Dodaj chłodzenie"
+                   Style="{StaticResource FormTitleTextStyle}"/>
+
+            <ScrollViewer Grid.Row="1"
+                          Style="{StaticResource PcCoolingScrollViewerStyle}">
+
+                <StackPanel>
+
+                    <Border Padding="16"
+                        CornerRadius="10"
+                        Background="{DynamicResource PanelBackgroundBrush}"
+                       BorderBrush="{DynamicResource AppBorderBrush}"
+                        BorderThickness="1"
+                        Margin="0,0,0,14">
+
+                        <StackPanel>
+                            <TextBlock x:Name="CoolingModeTitle"
+                                   Text="Typ chłodzenia"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource AppTextBrush}"
+                                   Margin="0,0,0,14"/>
+
+                            <RadioButton x:Name="StandardCoolingRadio"
+                                     Content="Standard Cooling"
+                                     Foreground="{DynamicResource AppTextBrush}"
+                                     Margin="0,0,0,10"
+                                     Checked="CoolingModeRadio_Checked"/>
+
+                            <RadioButton x:Name="CustomWaterLoopRadio"
+                                     Content="Custom Water Cooling"
+                                     Foreground="{DynamicResource AppTextBrush}"
+                                     Checked="CoolingModeRadio_Checked"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- STANDARD COOLING -->
+                    <Border x:Name="StandardCoolingPanel"
+                        Padding="16"
+                        CornerRadius="10"
+                        Background="{DynamicResource PanelBackgroundBrush}"
+                        BorderBrush="{DynamicResource AppBorderBrush}"
+                        BorderThickness="1"
+                        Margin="0,0,0,14"
+                        Visibility="Collapsed">
+
+                        <StackPanel>
+                            <TextBlock x:Name="StandardCoolingTitle"
+                                   Text="Standard Cooling"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource AppTextBrush}"
+                                   Margin="0,0,0,14"/>
+
+                            <!-- CPU -->
+                            <Border Padding="14" CornerRadius="10" Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" Margin="0,0,0,14">
+                                <StackPanel>
+                                    <TextBlock x:Name="CpuCoolingTitle" Text="Chłodzenie CPU"
+                                           FontSize="17" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <TextBlock x:Name="CpuCoolingTypeLabel" Text="Typ chłodzenia"
+                                           Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="CpuCoolingTypeCombo"
+                                          SelectionChanged="CpuCoolingTypeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <TextBlock x:Name="CpuOtherCoolingTypeLabel" Text="Opis typu chłodzenia"
+                                           Foreground="{DynamicResource AppTextBrush}" Margin="0,12,0,6"
+                                           Visibility="Collapsed"/>
+
+                                    <TextBox x:Name="CpuOtherCoolingTypeTextBox"
+                                         Visibility="Collapsed"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                    <StackPanel x:Name="CpuAirPanel"
+                                            Margin="0,14,0,0"
+                                            Visibility="Collapsed">
+
+                                        <CheckBox x:Name="HasRadiatorDetailsCheckBox"
+                                              Content="Dodaj dane radiatora"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,0,0,8"
+                                              Checked="HasRadiatorDetailsCheckBox_Checked"
+                                              Unchecked="HasRadiatorDetailsCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="RadiatorDetailsPanel"
+                                                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="RadiatorTypeLabel"
+                                                   Text="Rodzaj radiatora"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,0,0,6"/>
+
+                                            <ComboBox x:Name="RadiatorTypeCombo"
+                                                  SelectionChanged="RadiatorTypeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                            <TextBlock x:Name="OtherRadiatorTypeLabel"
+                                                   Text="Opis radiatora"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,12,0,6"
+                                                   Visibility="Collapsed"/>
+
+                                            <TextBox x:Name="OtherRadiatorTypeTextBox"
+                                                 Visibility="Collapsed"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="RadiatorPrimaryColorLabel"
+                                                   Text="Kolor główny radiatora"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,12,0,6"/>
+
+                                            <TextBox x:Name="RadiatorPrimaryColorTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="RadiatorSecondaryColorLabel"
+                                                   Text="Kolor dodatkowy radiatora"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,12,0,6"/>
+
+                                            <TextBox x:Name="RadiatorSecondaryColorTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="HasHeatpipeCountCheckBox"
+                                              Content="Podaj liczbę heatpipe"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,14,0,8"
+                                              Checked="HasHeatpipeCountCheckBox_Checked"
+                                              Unchecked="HasHeatpipeCountCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="HeatpipeCountPanel"
+                                                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="HeatpipeCountLabel"
+                                                   Text="Liczba heatpipe"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,0,0,6"/>
+
+                                            <ComboBox x:Name="HeatpipeCountCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="HasPeltierModuleCheckBox"
+                                              Content="Zastosowano ogniwo Peltiera"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,14,0,8"
+                                              Checked="HasPeltierModuleCheckBox_Checked"
+                                              Unchecked="HasPeltierModuleCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="PeltierModulePanel"
+                                                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="PeltierModelLabel"
+                                                   Text="Model ogniwa Peltiera"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,0,0,6"/>
+
+                                            <TextBox x:Name="PeltierModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="HasFanDetailsCheckBox"
+                                              Content="Dodaj wentylatory"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,14,0,8"
+                                              Checked="HasFanDetailsCheckBox_Checked"
+                                              Unchecked="HasFanDetailsCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="FanDetailsPanel"
+                                                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="FanCountLabel"
+                                                   Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,0,0,6"/>
+
+                                            <ComboBox x:Name="FanCountCombo"
+                                                  SelectionChanged="FanCountCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                            <StackPanel x:Name="FansContainer"
+                                                    Margin="0,12,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel x:Name="CpuAioPanel"
+            Margin="0,14,0,0"
+            Visibility="Collapsed">
+
+                                        <CheckBox x:Name="HasAioDetailsCheckBox"
+              Content="Dodaj producenta i model AIO"
+              Foreground="{DynamicResource AppTextBrush}"
+              Margin="0,0,0,8"
+              Checked="HasAioDetailsCheckBox_Checked"
+              Unchecked="HasAioDetailsCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="AioDetailsPanel"
+                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="AioManufacturerLabel"
+                   Text="Producent"
+                   Foreground="{DynamicResource AppTextBrush}"
+                   Margin="0,0,0,6"/>
+
+                                            <TextBox x:Name="AioManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="AioModelLabel"
+                   Text="Model"
+                   Foreground="{DynamicResource AppTextBrush}"
+                   Margin="0,12,0,6"/>
+
+                                            <TextBox x:Name="AioModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <CheckBox x:Name="HasAioNotesCheckBox"
+          Content="Dodaj informacje"
+          Foreground="{DynamicResource AppTextBrush}"
+          Margin="0,14,0,8"
+          Checked="HasAioNotesCheckBox_Checked"
+          Unchecked="HasAioNotesCheckBox_Checked"/>
+
+                                            <StackPanel x:Name="AioNotesPanel"
+            Visibility="Collapsed">
+
+                                                <TextBlock x:Name="AioNotesLabel"
+           Text="Informacje"
+           Foreground="{DynamicResource AppTextBrush}"
+           Margin="0,0,0,6"/>
+
+                                                <TextBox x:Name="AioNotesTextBox"
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             Height="80"/>
+                                            </StackPanel>
+
+
+                                        </StackPanel>
+                                    </StackPanel>
+
+
+                                </StackPanel>
+                            </Border>
+
+                            <!-- GPU -->
+                            <Border Padding="14" CornerRadius="10" Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" Margin="0,0,0,14">
+                                <StackPanel>
+                                    <TextBlock x:Name="GpuCoolingTitle" Text="Chłodzenie GPU"
+                                           FontSize="17" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <TextBlock x:Name="GpuCoolingTypeLabel" Text="Typ chłodzenia"
+                                           Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="GpuCoolingTypeCombo"
+                                          SelectionChanged="GpuCoolingTypeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="GpuStockPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="GpuStockTypeLabel" Text="Rodzaj stock"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <ComboBox x:Name="GpuStockTypeCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="GpuCustomPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="GpuCustomDescriptionLabel" Text="Opis chłodzenia"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="GpuCustomDescriptionTextBox"
+                                             Height="70" TextWrapping="Wrap"
+                                             AcceptsReturn="True"
+                                             VerticalContentAlignment="Top"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- MOTHERBOARD -->
+                            <Border Padding="14" CornerRadius="10" Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" Margin="0,0,0,14">
+                                <StackPanel>
+                                    <TextBlock x:Name="MotherboardCoolingTitle" Text="Chłodzenie płyty głównej"
+                                           FontSize="17" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <TextBlock x:Name="MotherboardCoolingTypeLabel" Text="Typ chłodzenia"
+                                           Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="MotherboardCoolingTypeCombo"
+                                          SelectionChanged="MotherboardCoolingTypeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="MotherboardStockPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="MotherboardStockTypeLabel" Text="Rodzaj stock"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <ComboBox x:Name="MotherboardStockTypeCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="MotherboardCustomPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="MotherboardCustomDescriptionLabel" Text="Opis chłodzenia"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="MotherboardCustomDescriptionTextBox"
+                                             Height="70" TextWrapping="Wrap"
+                                             AcceptsReturn="True"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- RAM -->
+                            <Border Padding="14" CornerRadius="10" Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" Margin="0,0,0,14">
+                                <StackPanel>
+                                    <TextBlock x:Name="RamCoolingTitle" Text="Chłodzenie RAM"
+                                           FontSize="17" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <TextBlock x:Name="RamCoolingTypeLabel" Text="Typ chłodzenia"
+                                           Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="RamCoolingTypeCombo"
+                                          SelectionChanged="RamCoolingTypeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="RamStockPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="RamStockTypeLabel" Text="Rodzaj stock"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <ComboBox x:Name="RamStockTypeCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="RamCustomPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="RamCustomDescriptionLabel" Text="Opis chłodzenia"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="RamCustomDescriptionTextBox"
+                                             Height="70" TextWrapping="Wrap"
+                                             AcceptsReturn="True"
+                                             VerticalContentAlignment="Top"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- STORAGE -->
+                            <Border Padding="14" CornerRadius="10" Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" Margin="0,0,0,14">
+                                <StackPanel>
+                                    <TextBlock x:Name="StorageCoolingTitle" Text="Chłodzenie dysków"
+                                           FontSize="17" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <TextBlock x:Name="StorageCoolingTypeLabel" Text="Typ chłodzenia"
+                                           Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="StorageCoolingTypeCombo"
+                                          SelectionChanged="StorageCoolingTypeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="StorageStockPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="StorageStockTypeLabel" Text="Rodzaj stock"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <ComboBox x:Name="StorageStockTypeCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="StorageCustomPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="StorageCustomDescriptionLabel" Text="Opis chłodzenia"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="StorageCustomDescriptionTextBox"
+                                             Height="70" TextWrapping="Wrap"
+                                             AcceptsReturn="True"
+                                             VerticalContentAlignment="Top"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- PSU -->
+                            <Border Padding="14" CornerRadius="10" Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" Margin="0,0,0,14">
+                                <StackPanel>
+                                    <TextBlock x:Name="PsuCoolingTitle" Text="Chłodzenie zasilacza"
+                                           FontSize="17" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <TextBlock x:Name="PsuCoolingTypeLabel" Text="Typ chłodzenia"
+                                           Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="PsuCoolingTypeCombo"
+                                          SelectionChanged="PsuCoolingTypeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="PsuStockPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="PsuStockTypeLabel" Text="Rodzaj stock"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <ComboBox x:Name="PsuStockTypeCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                        <CheckBox x:Name="PsuHasFanDetailsCheckBox"
+                                              Content="Dodaj dane wentylatora"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,0,0,8"
+                                              Checked="PsuHasFanDetailsCheckBox_Checked"
+                                              Unchecked="PsuHasFanDetailsCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="PsuFanDetailsPanel" Visibility="Collapsed">
+                                            <TextBlock x:Name="PsuFanCountLabel" Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="PsuFanCountCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                            <TextBlock x:Name="PsuFanSizeLabel" Text="Rozmiar wentylatora"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="PsuFanSizeCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                            <TextBlock x:Name="PsuFanPrimaryColorLabel" Text="Kolor główny"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <TextBox x:Name="PsuFanPrimaryColorTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="PsuFanSecondaryColorLabel" Text="Kolor dodatkowy"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <TextBox x:Name="PsuFanSecondaryColorTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="PsuFanRgbLabel" Text="RGB"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="PsuFanRgbCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                            <CheckBox x:Name="PsuFanReverseCheckBox"
+                                                  Content="Odwrócony ciąg"
+                                                  Foreground="{DynamicResource AppTextBrush}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="PsuCustomPanel" Visibility="Collapsed" Margin="0,12,0,0">
+                                        <TextBlock x:Name="PsuCustomDescriptionLabel" Text="Opis chłodzenia"
+                                               Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="PsuCustomDescriptionTextBox"
+                                             Height="70" TextWrapping="Wrap"
+                                             AcceptsReturn="True"
+                                             VerticalContentAlignment="Top"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- CASE -->
+                            <Border Padding="14" CornerRadius="10" Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1">
+                                <StackPanel>
+                                    <TextBlock x:Name="CaseCoolingTitle" Text="Chłodzenie obudowy"
+                                           FontSize="17" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <CheckBox x:Name="HasCaseCoolingCheckBox"
+                                          Content="Dodaj chłodzenie obudowy"
+                                          Foreground="{DynamicResource AppTextBrush}"
+                                          Margin="0,0,0,8"
+                                          Checked="HasCaseCoolingCheckBox_Checked"
+                                          Unchecked="HasCaseCoolingCheckBox_Checked"/>
+
+                                    <StackPanel x:Name="CaseCoolingDetailsPanel"
+                                            Visibility="Collapsed">
+
+                                        <CheckBox x:Name="CaseFrontCheckBox" Content="Front"
+                                              Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,8"
+                                              Checked="CaseLocationCheckBox_Checked"
+                                              Unchecked="CaseLocationCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="CaseFrontPanel" Visibility="Collapsed" Margin="20,0,0,10">
+                                            <TextBlock x:Name="CaseFrontFanCountLabel" Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="CaseFrontFanCountCombo"
+                                                  SelectionChanged="CaseFrontFanCountCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                            <StackPanel x:Name="CaseFrontFansContainer" Margin="0,12,0,0"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="CaseLeftCheckBox" Content="Left Side"
+                                              Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,8"
+                                              Checked="CaseLocationCheckBox_Checked"
+                                              Unchecked="CaseLocationCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="CaseLeftPanel" Visibility="Collapsed" Margin="20,0,0,10">
+                                            <TextBlock x:Name="CaseLeftFanCountLabel" Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="CaseLeftFanCountCombo"
+                                                  SelectionChanged="CaseLeftFanCountCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                            <StackPanel x:Name="CaseLeftFansContainer" Margin="0,12,0,0"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="CaseRightCheckBox" Content="Right Side"
+                                              Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,8"
+                                              Checked="CaseLocationCheckBox_Checked"
+                                              Unchecked="CaseLocationCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="CaseRightPanel" Visibility="Collapsed" Margin="20,0,0,10">
+                                            <TextBlock x:Name="CaseRightFanCountLabel" Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="CaseRightFanCountCombo"
+                                                  SelectionChanged="CaseRightFanCountCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                            <StackPanel x:Name="CaseRightFansContainer" Margin="0,12,0,0"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="CaseTopCheckBox" Content="Top"
+                                              Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,8"
+                                              Checked="CaseLocationCheckBox_Checked"
+                                              Unchecked="CaseLocationCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="CaseTopPanel" Visibility="Collapsed" Margin="20,0,0,10">
+                                            <TextBlock x:Name="CaseTopFanCountLabel" Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="CaseTopFanCountCombo"
+                                                  SelectionChanged="CaseTopFanCountCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                            <StackPanel x:Name="CaseTopFansContainer" Margin="0,12,0,0"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="CaseBottomCheckBox" Content="Bottom"
+                                              Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,8"
+                                              Checked="CaseLocationCheckBox_Checked"
+                                              Unchecked="CaseLocationCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="CaseBottomPanel" Visibility="Collapsed" Margin="20,0,0,10">
+                                            <TextBlock x:Name="CaseBottomFanCountLabel" Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="CaseBottomFanCountCombo"
+                                                  SelectionChanged="CaseBottomFanCountCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                            <StackPanel x:Name="CaseBottomFansContainer" Margin="0,12,0,0"/>
+                                        </StackPanel>
+
+                                        <CheckBox x:Name="CaseRearCheckBox" Content="Rear"
+                                              Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,8"
+                                              Checked="CaseLocationCheckBox_Checked"
+                                              Unchecked="CaseLocationCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="CaseRearPanel" Visibility="Collapsed" Margin="20,0,0,10">
+                                            <TextBlock x:Name="CaseRearFanCountLabel" Text="Liczba wentylatorów"
+                                                   Foreground="{DynamicResource AppTextBrush}" Margin="0,0,0,6"/>
+                                            <ComboBox x:Name="CaseRearFanCountCombo"
+                                                  SelectionChanged="CaseRearFanCountCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                            <StackPanel x:Name="CaseRearFansContainer" Margin="0,12,0,0"/>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- CUSTOM WATER COOLING -->
+                    <Border x:Name="CustomWaterLoopPanel"
+                        Padding="16"
+                        CornerRadius="10"
+                        Background="{DynamicResource PanelBackgroundBrush}"
+                        BorderBrush="{DynamicResource AppBorderBrush}"
+                        BorderThickness="1"
+                        Visibility="Collapsed">
+
+                        <StackPanel>
+                            <TextBlock x:Name="CustomWaterLoopTitle"
+                                   Text="Custom Water Cooling"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource AppTextBrush}"
+                                   Margin="0,0,0,14"/>
+
+                            <Border Padding="14"
+                                CornerRadius="10"
+                                Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}"
+                                BorderThickness="1">
+
+                                <StackPanel>
+                                    <TextBlock x:Name="WaterBlocksTitle"
+                                           Text="Bloki wodne"
+                                           FontSize="17"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <!-- CPU BLOCK -->
+                                    <CheckBox x:Name="WaterCpuBlockCheckBox"
+                                          Content="CPU Block"
+                                          Foreground="{DynamicResource AppTextBrush}"
+                                          Margin="0,0,0,8"
+                                          Checked="WaterBlockCheckBox_Checked"
+                                          Unchecked="WaterBlockCheckBox_Checked"/>
+
+                                    <StackPanel x:Name="WaterCpuBlockPanel"
+                                            Visibility="Collapsed"
+                                            Margin="20,8,0,8">
+
+                                        <TextBlock x:Name="WaterCpuBlockManufacturerLabel"
+                                               Text="Producent"
+                                               Foreground="{DynamicResource AppTextBrush}"
+                                               Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="WaterCpuBlockManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <TextBlock x:Name="WaterCpuBlockModelLabel"
+                                               Text="Model"
+                                               Foreground="{DynamicResource AppTextBrush}"
+                                               Margin="0,10,0,6"/>
+
+                                        <TextBox x:Name="WaterCpuBlockModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <CheckBox x:Name="WaterCpuBlockFittingsCheckBox"
+                                              Content="Dodaj złączki"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,12,0,8"
+                                              Checked="WaterBlockFittingsCheckBox_Checked"
+                                              Unchecked="WaterBlockFittingsCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="WaterCpuBlockFittingsPanel"
+                                                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="WaterCpuBlockFittingsManufacturerLabel"
+                                                   Text="Producent"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,0,0,6"/>
+
+                                            <TextBox x:Name="WaterCpuBlockFittingsManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="WaterCpuBlockFittingsModelLabel"
+                                                   Text="Model"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,10,0,6"/>
+
+                                            <TextBox x:Name="WaterCpuBlockFittingsModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="WaterCpuBlockFittingsCountLabel"
+                                                   Text="Ilość"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,10,0,6"/>
+
+                                            <ComboBox x:Name="WaterCpuBlockFittingsCountCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- GPU BLOCK -->
+                                    <CheckBox x:Name="WaterGpuBlockCheckBox"
+                                          Content="GPU Block"
+                                          Foreground="{DynamicResource AppTextBrush}"
+                                          Margin="0,8,0,8"
+                                          Checked="WaterBlockCheckBox_Checked"
+                                          Unchecked="WaterBlockCheckBox_Checked"/>
+
+                                    <StackPanel x:Name="WaterGpuBlockPanel"
+                                            Visibility="Collapsed"
+                                            Margin="20,8,0,8">
+
+                                        <TextBlock x:Name="WaterGpuBlockManufacturerLabel"
+                                               Text="Producent"
+                                               Foreground="{DynamicResource AppTextBrush}"
+                                               Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="WaterGpuBlockManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <TextBlock x:Name="WaterGpuBlockModelLabel"
+                                               Text="Model"
+                                               Foreground="{DynamicResource AppTextBrush}"
+                                               Margin="0,10,0,6"/>
+
+                                        <TextBox x:Name="WaterGpuBlockModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <CheckBox x:Name="WaterGpuBlockFittingsCheckBox"
+                                              Content="Dodaj złączki"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,12,0,8"
+                                              Checked="WaterBlockFittingsCheckBox_Checked"
+                                              Unchecked="WaterBlockFittingsCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="WaterGpuBlockFittingsPanel"
+                                                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="WaterGpuBlockFittingsManufacturerLabel"
+                                                   Text="Producent"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,0,0,6"/>
+
+                                            <TextBox x:Name="WaterGpuBlockFittingsManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="WaterGpuBlockFittingsModelLabel"
+                                                   Text="Model"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,10,0,6"/>
+
+                                            <TextBox x:Name="WaterGpuBlockFittingsModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="WaterGpuBlockFittingsCountLabel"
+                                                   Text="Ilość"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,10,0,6"/>
+
+                                            <ComboBox x:Name="WaterGpuBlockFittingsCountCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- MOTHERBOARD BLOCK -->
+                                    <CheckBox x:Name="WaterMotherboardBlockCheckBox"
+                                          Content="Motherboard Block"
+                                          Foreground="{DynamicResource AppTextBrush}"
+                                          Margin="0,8,0,8"
+                                          Checked="WaterBlockCheckBox_Checked"
+                                          Unchecked="WaterBlockCheckBox_Checked"/>
+
+                                    <StackPanel x:Name="WaterMotherboardBlockPanel"
+                                            Visibility="Collapsed"
+                                            Margin="20,8,0,8">
+
+                                        <TextBlock x:Name="WaterMotherboardBlockManufacturerLabel"
+                                               Text="Producent"
+                                               Foreground="{DynamicResource AppTextBrush}"
+                                               Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="WaterMotherboardBlockManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <TextBlock x:Name="WaterMotherboardBlockModelLabel"
+                                               Text="Model"
+                                               Foreground="{DynamicResource AppTextBrush}"
+                                               Margin="0,10,0,6"/>
+
+                                        <TextBox x:Name="WaterMotherboardBlockModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <CheckBox x:Name="WaterMotherboardBlockFittingsCheckBox"
+                                              Content="Dodaj złączki"
+                                              Foreground="{DynamicResource AppTextBrush}"
+                                              Margin="0,12,0,8"
+                                              Checked="WaterBlockFittingsCheckBox_Checked"
+                                              Unchecked="WaterBlockFittingsCheckBox_Checked"/>
+
+                                        <StackPanel x:Name="WaterMotherboardBlockFittingsPanel"
+                                                Visibility="Collapsed">
+
+                                            <TextBlock x:Name="WaterMotherboardBlockFittingsManufacturerLabel"
+                                                   Text="Producent"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,0,0,6"/>
+
+                                            <TextBox x:Name="WaterMotherboardBlockFittingsManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="WaterMotherboardBlockFittingsModelLabel"
+                                                   Text="Model"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,10,0,6"/>
+
+                                            <TextBox x:Name="WaterMotherboardBlockFittingsModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                            <TextBlock x:Name="WaterMotherboardBlockFittingsCountLabel"
+                                                   Text="Ilość"
+                                                   Foreground="{DynamicResource AppTextBrush}"
+                                                   Margin="0,10,0,6"/>
+
+                                            <ComboBox x:Name="WaterMotherboardBlockFittingsCountCombo"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Padding="14"
+                                CornerRadius="10"
+                                Background="{DynamicResource ContentBackgroundBrush}"
+                                BorderBrush="{DynamicResource AppBorderBrush}"
+                                BorderThickness="1"
+                                Margin="0,14,0,0">
+
+                                <StackPanel>
+                                    <TextBlock x:Name="WaterSecondaryCoolingTitle"
+                                           Text="Pozostałe komponenty"
+                                           FontSize="17"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,12"/>
+
+                                    <TextBlock x:Name="WaterRamCoolingLabel"
+                                           Text="RAM"
+                                           Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="WaterRamCoolingModeCombo"
+                                          SelectionChanged="WaterCoolingModeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="WaterRamCoolingPanel"
+                                        Visibility="Collapsed"
+                                        Margin="0,0,0,12">
+
+                                        <TextBlock x:Name="WaterRamBlockManufacturerLabel"
+                                       Text="Producent bloku"
+                                       Foreground="{DynamicResource AppTextBrush}"
+                                       Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="WaterRamBlockManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <TextBlock x:Name="WaterRamBlockModelLabel"
+               Text="Model bloku"
+               Foreground="{DynamicResource AppTextBrush}"
+               Margin="0,10,0,6"/>
+
+                                        <TextBox x:Name="WaterRamBlockModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+                                    </StackPanel>
+
+                                    <TextBlock x:Name="WaterStorageCoolingLabel"
+                                           Text="Dyski"
+                                           Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="WaterStorageCoolingModeCombo"
+                                          SelectionChanged="WaterCoolingModeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="WaterStorageCoolingPanel"
+            Visibility="Collapsed"
+            Margin="0,0,0,12">
+
+                                        <TextBlock x:Name="WaterStorageBlockManufacturerLabel"
+               Text="Producent bloku"
+               Foreground="{DynamicResource AppTextBrush}"
+               Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="WaterStorageBlockManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <TextBlock x:Name="WaterStorageBlockModelLabel"
+               Text="Model bloku"
+               Foreground="{DynamicResource AppTextBrush}"
+               Margin="0,10,0,6"/>
+
+                                        <TextBox x:Name="WaterStorageBlockModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+                                    </StackPanel>
+
+                                    <TextBlock x:Name="WaterPsuCoolingLabel"
+                                           Text="Zasilacz"
+                                           Foreground="{DynamicResource AppTextBrush}"
+                                           Margin="0,0,0,6"/>
+
+                                    <ComboBox x:Name="WaterPsuCoolingModeCombo"
+                                          SelectionChanged="WaterCoolingModeCombo_SelectionChanged"
+                                                  Style="{StaticResource FormComboBoxStyle}"/>
+
+                                    <StackPanel x:Name="WaterPsuCoolingPanel"
+            Visibility="Collapsed"
+            Margin="0,10,0,0">
+
+                                        <TextBlock x:Name="WaterPsuBlockManufacturerLabel"
+               Text="Producent bloku"
+               Foreground="{DynamicResource AppTextBrush}"
+               Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="WaterPsuBlockManufacturerTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+
+                                        <TextBlock x:Name="WaterPsuBlockModelLabel"
+               Text="Model bloku"
+               Foreground="{DynamicResource AppTextBrush}"
+               Margin="0,10,0,6"/>
+
+                                        <TextBox x:Name="WaterPsuBlockModelTextBox"
+                                                 Style="{StaticResource FormTextBoxStyle}"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,18,0,0">
+
+                <Button x:Name="CancelButton"
+                    Content="Anuluj"
+                    Style="{StaticResource FormCancelButtonStyle}"
+                    Click="CancelButton_Click"/>
+
+                <Button x:Name="SaveButton"
+                    Content="Zapisz"
+                    Style="{StaticResource FormSaveButtonStyle}"
+                    Click="SaveButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

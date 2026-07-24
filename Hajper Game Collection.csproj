@@ -1,0 +1,560 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <RootNamespace>Hajper_Game_Collection</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\Icons\hgcmainico.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Backgrounds\3do_bg.png" />
+    <None Remove="Assets\Backgrounds\3do_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\amiga_background.png" />
+    <None Remove="Assets\Backgrounds\amiga_bg.png" />
+    <None Remove="Assets\Backgrounds\amiga_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\apple_bg.png" />
+    <None Remove="Assets\Backgrounds\apple_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\atari_background.png" />
+    <None Remove="Assets\Backgrounds\atari_bg.png" />
+    <None Remove="Assets\Backgrounds\atari_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\bally_bg.png" />
+    <None Remove="Assets\Backgrounds\bally_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\bandai_bg.png" />
+    <None Remove="Assets\Backgrounds\bandai_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\coleco_bg.png" />
+    <None Remove="Assets\Backgrounds\coleco_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\commodore_background.png" />
+    <None Remove="Assets\Backgrounds\commodore_bg.png" />
+    <None Remove="Assets\Backgrounds\commodore_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\default_background.png" />
+    <None Remove="Assets\Backgrounds\default_bg.png" />
+    <None Remove="Assets\Backgrounds\default_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\fairchild_bg.png" />
+    <None Remove="Assets\Backgrounds\fairchild_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\magnavox_bg.png" />
+    <None Remove="Assets\Backgrounds\magnavox_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\mattel_bg.png" />
+    <None Remove="Assets\Backgrounds\mattel_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\modern_bg.png" />
+    <None Remove="Assets\Backgrounds\nec_bg.png" />
+    <None Remove="Assets\Backgrounds\nec_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\neutral_bg.png" />
+    <None Remove="Assets\Backgrounds\neutral_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\nintendo_bg.png" />
+    <None Remove="Assets\Backgrounds\nintendo_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\pc_bg.png" />
+    <None Remove="Assets\Backgrounds\pc_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\philips_bg.png" />
+    <None Remove="Assets\Backgrounds\philips_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\playstation_bg.png" />
+    <None Remove="Assets\Backgrounds\playstation_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\ps_background.png" />
+    <None Remove="Assets\Backgrounds\rca_bg.png" />
+    <None Remove="Assets\Backgrounds\rca_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\sega_background.png" />
+    <None Remove="Assets\Backgrounds\sega_bg.png" />
+    <None Remove="Assets\Backgrounds\sega_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\sinclair_bg.png" />
+    <None Remove="Assets\Backgrounds\sinclair_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\snk_bg.png" />
+    <None Remove="Assets\Backgrounds\snk_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\vectrex_bg.png" />
+    <None Remove="Assets\Backgrounds\vectrex_graphite_bg.png" />
+    <None Remove="Assets\Backgrounds\xbox_background.png" />
+    <None Remove="Assets\Backgrounds\xbox_bg.png" />
+    <None Remove="Assets\Backgrounds\xbox_graphite_bg.png" />
+    <None Remove="Assets\hgcmainico.png" />
+    <None Remove="Assets\Icons\atari_addaccessories.png" />
+    <None Remove="Assets\Icons\atari_addcomputer.png" />
+    <None Remove="Assets\Icons\atari_addconsole.png" />
+    <None Remove="Assets\Icons\atari_emptycollection.png" />
+    <None Remove="Assets\Icons\atari_game.png" />
+    <None Remove="Assets\Icons\atari_hardware.png" />
+    <None Remove="Assets\Icons\calendar.png" />
+    <None Remove="Assets\Icons\commodore_addaccessories.png" />
+    <None Remove="Assets\Icons\commodore_addcomputer.png" />
+    <None Remove="Assets\Icons\commodore_addconsole.png" />
+    <None Remove="Assets\Icons\commodore_emptycollection.png" />
+    <None Remove="Assets\Icons\commodore_game.png" />
+    <None Remove="Assets\Icons\commodore_hardware.png" />
+    <None Remove="Assets\Icons\default_addaccessories.png" />
+    <None Remove="Assets\Icons\default_addcomputer.png" />
+    <None Remove="Assets\Icons\default_addconsole.png" />
+    <None Remove="Assets\Icons\default_emptycollection.png" />
+    <None Remove="Assets\Icons\default_game.png" />
+    <None Remove="Assets\Icons\default_hardware.png" />
+    <None Remove="Assets\Icons\edit.png" />
+    <None Remove="Assets\Icons\edit_white.png" />
+    <None Remove="Assets\Icons\favorite.png" />
+    <None Remove="Assets\Icons\favorite_empty.png" />
+    <None Remove="Assets\Icons\favorite_empty_white.png" />
+    <None Remove="Assets\Icons\favorite_white.png" />
+    <None Remove="Assets\Icons\hgcmainico.ico" />
+    <None Remove="Assets\Icons\hgcmainico.png" />
+    <None Remove="Assets\Icons\menu_file.ico" />
+    <None Remove="Assets\Icons\menu_info.ico" />
+    <None Remove="Assets\Icons\menu_settings.ico" />
+    <None Remove="Assets\Icons\menu_sortowanie.ico" />
+    <None Remove="Assets\Icons\menu_stats.ico" />
+    <None Remove="Assets\Icons\nintendo_addaccessories.png" />
+    <None Remove="Assets\Icons\nintendo_addcomputer.png" />
+    <None Remove="Assets\Icons\nintendo_addconsole.png" />
+    <None Remove="Assets\Icons\nintendo_emptycollection.png" />
+    <None Remove="Assets\Icons\nintendo_game.png" />
+    <None Remove="Assets\Icons\nintendo_hardware.png" />
+    <None Remove="Assets\Icons\nophoto.png" />
+    <None Remove="Assets\Icons\PDF\accessories.png" />
+    <None Remove="Assets\Icons\PDF\calendar.png" />
+    <None Remove="Assets\Icons\PDF\gamepad.png" />
+    <None Remove="Assets\Icons\PDF\pc.png" />
+    <None Remove="Assets\Icons\PDF\service.png" />
+    <None Remove="Assets\Icons\PDF\star.png" />
+    <None Remove="Assets\Icons\PDF\value.png" />
+    <None Remove="Assets\Icons\ps_addaccessories.png" />
+    <None Remove="Assets\Icons\ps_addcomputer.png" />
+    <None Remove="Assets\Icons\ps_addconsole.png" />
+    <None Remove="Assets\Icons\ps_emptycollection.png" />
+    <None Remove="Assets\Icons\ps_game.png" />
+    <None Remove="Assets\Icons\ps_hardware.png" />
+    <None Remove="Assets\Icons\sega_addaccessories.png" />
+    <None Remove="Assets\Icons\sega_addcomputer.png" />
+    <None Remove="Assets\Icons\sega_addconsole.png" />
+    <None Remove="Assets\Icons\sega_emptycollection.png" />
+    <None Remove="Assets\Icons\sega_game.png" />
+    <None Remove="Assets\Icons\sega_hardware.png" />
+    <None Remove="Assets\Icons\trash.png" />
+    <None Remove="Assets\Icons\trash_white.png" />
+    <None Remove="Assets\Icons\view.png" />
+    <None Remove="Assets\Icons\view_empty.png" />
+    <None Remove="Assets\Icons\view_white.png" />
+    <None Remove="Assets\Icons\xbox_addaccessories.png" />
+    <None Remove="Assets\Icons\xbox_addcomputer.png" />
+    <None Remove="Assets\Icons\xbox_addconsole.png" />
+    <None Remove="Assets\Icons\xbox_emptycollection.png" />
+    <None Remove="Assets\Icons\xbox_game.png" />
+    <None Remove="Assets\Icons\xbox_hardware.png" />
+    <None Remove="Assets\splash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Backgrounds\3do_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\3do_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\amiga_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\amiga_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\amiga_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\apple_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\apple_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\atari_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\atari_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\atari_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\bally_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\bally_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\bandai_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\bandai_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\coleco_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\coleco_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\commodore_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\commodore_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\commodore_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\default_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\default_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\default_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\fairchild_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\fairchild_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\magnavox_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\magnavox_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\mattel_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\mattel_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\modern_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\nec_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\nec_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\neutral_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\neutral_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\nintendo_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\nintendo_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\pc_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\pc_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\philips_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\philips_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\playstation_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\playstation_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\ps_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\rca_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\rca_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\sega_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\sega_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\sega_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\sinclair_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\sinclair_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\snk_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\snk_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\vectrex_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\vectrex_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\xbox_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\xbox_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrounds\xbox_graphite_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\hgcmainico.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\atari_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\atari_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\atari_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\atari_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\atari_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\atari_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\calendar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\commodore_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\commodore_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\commodore_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\commodore_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\commodore_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\commodore_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\default_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\default_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\default_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\default_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\default_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\default_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\edit_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\favorite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\favorite_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\favorite_empty_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\favorite_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\hgcmainico.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\menu_file.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\menu_info.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\menu_settings.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\menu_sortowanie.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\menu_stats.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\modern_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\modern_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\modern_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\nophoto.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\modern_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\modern_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\modern_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\nintendo_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\nintendo_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\nintendo_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\nintendo_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\nintendo_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\nintendo_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PDF\accessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PDF\calendar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PDF\gamepad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PDF\pc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PDF\service.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PDF\star.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PDF\value.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\ps_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\ps_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\ps_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\ps_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\ps_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\ps_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\sega_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\sega_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\sega_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\sega_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\sega_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\sega_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\trash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\trash_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\view.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\view_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\xbox_addaccessories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\xbox_addcomputer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\xbox_addconsole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\xbox_emptycollection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\xbox_game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\xbox_hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Logos\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Themes\" />
+    <Folder Include="UserData\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PDFsharp" Version="6.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\splash.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="HgcMessageBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+  </ItemGroup>
+
+</Project>
