@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Assets/mainicon.png" width="128" alt="Hajper Games Collection Logo">
+  <img src="Assets/hgcmainicon.png" width="128" alt="Hajper Games Collection Logo">
 </p>
 
 <h1 align="center">Hajper Games Collection</h1>
