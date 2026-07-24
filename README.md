@@ -36,7 +36,12 @@ A desktop application for organizing games, consoles, accessories and PC hardwar
 
 # 📷 Screenshots
 
-*(Screenshots will be added soon.)*
+<p align="center">
+  <img src="Screenshots/ss1.png" width="48%">
+  <img src="Screenshots/ss2.png" width="48%">
+  <img src="Screenshots/ss3.png" width="48%">
+  <img src="Screenshots/ss4.png" width="48%">
+</p>
 
 ---
 
