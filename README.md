@@ -40,7 +40,7 @@ A desktop application for organizing games, consoles, accessories and PC hardwar
   <img src="Screenshots/ss1.png" width="48%">
   <img src="Screenshots/ss2.png" width="48%">
   <img src="Screenshots/ss3.png" width="48%">
-  <img src="Screenshots/ss4.png" width="48%">
+  <img src="Screenshots/ss5.png" width="48%">
 </p>
 
 ---
